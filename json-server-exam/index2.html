@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSON test</title>
+  </head>
+  <body>
+    <pre></pre>
+    <script>
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://localhost:3000/todos");
+      
+      xhr.setRequestHeader('content-type', 'application/json');
+
+      xhr.send(JSON.stringify({id : 4, content: 'Angular', completed: false}));
+      xhr.onload = () => {
+        if (xhr.status === 200 || xhr.status === 201){
+          document.querySelector('pre').textContent = xhr.response;
+        }else{
+          console.error('Error', xhr.status, xhr.statusText);
+        }
+      };
+    </script>
+  </body>
+</html>
